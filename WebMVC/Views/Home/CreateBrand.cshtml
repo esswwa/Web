@@ -1,0 +1,40 @@
+﻿@using WebAPI.Models
+@model Brand
+
+@{
+    ViewData["Title"] = "Create Brand Page";
+}
+
+<div class="container mt-5">
+    <h1>Создание бренда</h1>
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Назад</a>
+    <form asp-action="CreateBrand" method="post">
+        <div class="form-group">
+            <label asp-for="BrandName">Название</label>
+            <input asp-for="BrandName" class="form-control" />
+
+            <label asp-for="BrandDescription">Описание</label>
+            <input asp-for="BrandDescription" class="form-control" />
+
+            <label asp-for="BrandIsConfirm">Статус</label>
+            <select asp-for="BrandIsConfirm" class="form-control">
+                <option value="false">Не выполнено</option>
+                <option value="true">Выполнено</option>
+            </select>
+
+            <label asp-for="BrandUserId">ID пользователя</label>
+            <select asp-for="BrandUserId" class="form-control">
+                @if (ViewBag.Users != null)
+                    @foreach (var id in ViewBag.Users)
+                    {
+                        <option value="@id">@id</option>
+                    }
+                @if (ViewBag.Users == null)
+                {
+                    <option value="1">1</option>
+                }
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+</div>

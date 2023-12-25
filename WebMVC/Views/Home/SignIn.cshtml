@@ -1,0 +1,40 @@
+﻿@model WebAPI.Models.UserDTO
+@{
+    ViewData["Title"] = "Authorization Page";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SignIn</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <h2>Авторизация пользователя</h2>
+            <form method="post" asp-controller="Home" asp-action="SignIn">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div>
+                    <label class="form-label" asp-for="UserName">Логин</label><br />
+                    <input class="form-control" asp-for="UserName" />
+                </div>
+                <div>
+                    <label class="form-label" asp-for="UserPassword">Пароль</label><br />
+                    <input type="password" class="form-control" asp-for="UserPassword" />
+                    <span asp-validation-for="UserPassword"></span>
+                </div>
+                <div>
+                    <input class="btn btn-primary" type="submit" value="Войти" />
+                </div>
+            </form>
+            <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="SignUp">Регистрация</a>
+        </main>
+    </div>
+
+</body>
+</html>

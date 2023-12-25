@@ -1,0 +1,48 @@
+﻿@using WebAPI.Models
+@model IEnumerable<Brand>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5">
+    <h1>Brand List</h1>
+    <form action="searchPage" method="get">
+        <input type="text" id="search" name="search" placeholder="Поиск...">
+        <input type="submit" value="Найти">
+    </form>
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="CreateBrand">Добавить</a>
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Brand ID</th>
+                    <th>Brand Name</th>
+                    <th>Brand Description</th>
+                    <th>Brand IsConfirm</th>
+                    <th>Brand UserId</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var brand in Model)
+                {
+                    <tr>
+                        <td>@brand.BrandId</td>
+                        <td>@brand.BrandName</td>
+                        <td>@brand.BrandDescription</td>
+                        <td>@brand.BrandIsConfirm</td>
+                        <td>@brand.BrandUserId</td>
+                        <td>
+                            <a asp-action="EditBrandView" asp-route-search="@brand.BrandId" asp-route-id="@brand.BrandId" class="btn btn-danger">Редактировать</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No tasks available.</p>
+    }
+</div>
